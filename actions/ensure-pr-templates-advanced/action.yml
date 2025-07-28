@@ -1,0 +1,27 @@
+name: Ensure Advanced PR Templates
+description: Creates or updates multiple pull request templates with dynamic content and validation
+inputs:
+  templates:
+    description: 'YAML array of template objects: [{name: feature.md, content: ...}, ...]'
+    required: true
+  overwrite:
+    description: 'Overwrite existing templates (true/false)'
+    required: false
+    default: 'false'
+  inject-date:
+    description: 'Inject current date (true/false)'
+    required: false
+    default: 'false'
+  inject-author:
+    description: 'Inject author from GITHUB_ACTOR (true/false)'
+    required: false
+    default: 'false'
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        mkdir -p .github/PULL_REQUEST_TEMPLATE
+        echo "Parsing templates input..."
+        echo "${{ inputs.templates }}" > templates.yaml
+        python3 .github/actions/ensure-pr-templates-advanced/ensure_templates.py
