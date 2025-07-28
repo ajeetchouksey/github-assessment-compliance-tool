@@ -1,0 +1,59 @@
+name: Ensure dependabot.yml
+description: Creates a dependabot.yml file with all configuration options if it does not exist
+author: GitHub Copilot
+inputs:
+  package-ecosystem:
+    description: 'The package ecosystem (e.g., npm, pip, maven, etc.)'
+    required: true
+  directory:
+    description: 'Directory to scan for dependencies (e.g., /, /src, /backend)'
+    required: true
+  schedule-interval:
+    description: 'Update schedule interval (e.g., daily, weekly, monthly)'
+    required: true
+  open-pull-requests-limit:
+    description: 'Maximum number of open pull requests'
+    required: false
+    default: '5'
+  rebase-strategy:
+    description: 'Rebase strategy (auto, disabled, eager)'
+    required: false
+    default: 'auto'
+  versioning-strategy:
+    description: 'Versioning strategy (auto, widen, increase, lockfile-only, increase-if-necessary)'
+    required: false
+    default: 'auto'
+  allow:
+    description: 'Allow rules (YAML array as string)'
+    required: false
+    default: ''
+  ignore:
+    description: 'Ignore rules (YAML array as string)'
+    required: false
+    default: ''
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        mkdir -p .github
+        if [ ! -f .github/dependabot.yml ]; then
+          echo "version: 2" > .github/dependabot.yml
+          echo "updates:" >> .github/dependabot.yml
+          echo "  - package-ecosystem: $INPUT_PACKAGE_ECOSYSTEM" >> .github/dependabot.yml
+          echo "    directory: $INPUT_DIRECTORY" >> .github/dependabot.yml
+          echo "    schedule:" >> .github/dependabot.yml
+          echo "      interval: $INPUT_SCHEDULE_INTERVAL" >> .github/dependabot.yml
+          echo "    open-pull-requests-limit: $INPUT_OPEN_PULL_REQUESTS_LIMIT" >> .github/dependabot.yml
+          echo "    rebase-strategy: $INPUT_REBASE_STRATEGY" >> .github/dependabot.yml
+          echo "    versioning-strategy: $INPUT_VERSIONING_STRATEGY" >> .github/dependabot.yml
+          if [ "$INPUT_ALLOW" != "" ]; then
+            echo "    allow: $INPUT_ALLOW" >> .github/dependabot.yml
+          fi
+          if [ "$INPUT_IGNORE" != "" ]; then
+            echo "    ignore: $INPUT_IGNORE" >> .github/dependabot.yml
+          fi
+          echo "Created .github/dependabot.yml with all configuration options."
+        else
+          echo ".github/dependabot.yml already exists. No action taken."
+        fi

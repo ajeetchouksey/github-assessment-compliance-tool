@@ -1,0 +1,46 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = https://github.com/ajeetchouksey/github_assessment.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+	vscode-merge-base = origin/main
+	github-pr-base-branch = "ajeetchouksey#github_assessment#feature/missingcodeowner"
+	github-pr-base-branch = "ajeetchouksey#github_assessment#feature/missingcodeowner"
+[branch "feature/temp_hold_code"]
+	vscode-merge-base = origin/main
+	remote = origin
+	merge = refs/heads/feature/temp_hold_code
+[branch "feature/inital_step"]
+	github-pr-base-branch = "ajeetchouksey#github_assessment#main"
+	vscode-merge-base = origin/main
+	remote = origin
+	merge = refs/heads/feature/inital_step
+	github-pr-owner-number = "ajeetchouksey#github_assessment#9"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#9"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#9"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#10"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#10"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#10"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#10"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#10"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#10"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#11"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#11"
+	github-pr-owner-number = "ajeetchouksey#github_assessment#12"
+[branch "feature/missingcodeowner"]
+	vscode-merge-base = origin/main
+	remote = origin
+	merge = refs/heads/feature/missingcodeowner
+[branch "feature/intitalcode"]
+	github-pr-base-branch = "ajeetchouksey#github_assessment#main"
+	vscode-merge-base = origin/main
+	remote = origin
+	merge = refs/heads/feature/intitalcode
